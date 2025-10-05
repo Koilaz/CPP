@@ -1,8 +1,9 @@
 # Name of the executable
-NAME := megaphone
+NAME := Harlfilter
 
 # Sources
-SRC := megaphone.cpp
+SRC :=	main.cpp\
+		Harl.cpp\
 
 # Build directory
 BUILD_DIR := build
@@ -22,9 +23,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJ)
 
-# Compile .cpp -> build/.o
+# Compile .cpp -> build/.o (with dep files)
 $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 # Ensure build dir exists
 $(BUILD_DIR):
@@ -40,5 +41,8 @@ fclean: clean
 
 # Rebuild
 re: fclean all
+
+# Include auto-generated dependency files
+-include $(DEP)
 
 .PHONY: all clean fclean re

@@ -3,6 +3,7 @@ NAME := EpsteinList
 
 # Sources
 SRC :=	Phonebook.cpp\
+		Contact.cpp\
 		main.cpp\
 
 # Build directory
@@ -14,7 +15,6 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Objects & deps in build/
 OBJ := $(SRC:%.cpp=$(BUILD_DIR)/%.o)
-DEP := $(OBJ:.o=.d)
 
 # Default target
 all: $(NAME)
@@ -25,7 +25,7 @@ $(NAME): $(OBJ)
 
 # Compile .cpp -> build/.o (with dep files)
 $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Ensure build dir exists
 $(BUILD_DIR):
@@ -41,8 +41,5 @@ fclean: clean
 
 # Rebuild
 re: fclean all
-
-# Include auto-generated dependency files
--include $(DEP)
 
 .PHONY: all clean fclean re

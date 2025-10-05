@@ -1,8 +1,9 @@
 # Name of the executable
-NAME := megaphone
+NAME := PanamaPapers
 
 # Sources
-SRC := megaphone.cpp
+SRC :=	Account.cpp\
+		tests.cpp\
 
 # Build directory
 BUILD_DIR := build
@@ -13,7 +14,6 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 # Objects & deps in build/
 OBJ := $(SRC:%.cpp=$(BUILD_DIR)/%.o)
-DEP := $(OBJ:.o=.d)
 
 # Default target
 all: $(NAME)
@@ -22,7 +22,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJ)
 
-# Compile .cpp -> build/.o
+# Compile .cpp -> build/.o (with dep files)
 $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
