@@ -2,7 +2,7 @@
 
 HumanB::HumanB(std::string n_name) : weapon(NULL)
 {
-        name = n_name;
+    name = n_name;
 }
 
 void HumanB::attack()
