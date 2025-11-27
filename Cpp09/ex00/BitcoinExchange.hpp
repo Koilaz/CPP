@@ -24,7 +24,6 @@ class BitcoinExchange
 {
 public:
 
-
 	void import_data(std::string path);
 	void output_value(std::string path);
 
