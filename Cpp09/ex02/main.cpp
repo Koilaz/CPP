@@ -1,24 +1,21 @@
-#include "RPN.hpp"
 #include <vector>
 #include <iostream>
+#include"PmergeMe.hpp"
 
 int main(int argc, char **argv)
 {
-	RPN rpn;
-	int result;
-
 	if (argc != 2)
 	{
-		std::cerr << "Error\nargument format expected \" ./RPN \"1 2 3 + +\" \"" << std::endl;
+		std::cerr << "Error\nargument format expected \" ./PmergeMe \"4 8 137 15..\" \"" << std::endl;
 		return 0;
 	}
+	PmergeMe main;
 	try
 	{
-		rpn.import_input(argv[1]);
-		result = rpn.get_result();
-		std::cout<<result << std::endl;
+		main.str_to_vec(argv[1]);
+		main.print_results();
 	}
-	catch (const std::exception &e)
+	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}

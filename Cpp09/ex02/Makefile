@@ -1,18 +1,18 @@
 
 # Name of the executable
-NAME := RPN
+NAME := PmergeMe
 
 # Sources
 SRCS := \
-    main.cpp \
-	RPN.cpp
+	main.cpp \
+	PmergeMe.cpp
 
 # Build directory
 BUILD_DIR := build
 
 # Compiler & flags
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+CXXFLAGS := -Wall -Wextra -Werror -g -std=c++98
 
 # Objects in build/
 OBJS := $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
