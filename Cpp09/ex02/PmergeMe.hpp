@@ -8,23 +8,16 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
-
-typedef struct pair
-{
-	int b;
-	int s;
-} pair;
+#include <deque>
+#include <ctime>
 
 class PmergeMe
 {
 public:
 
 	void str_to_vec(char *str);
-	void print_results();
-	template<typename Container>
-	void print_container(const Container& container, const std::string& label);
-	std::vector<int>insert_small(std::vector<int> &small, std::vector<int> &big);
-	void recursive_fj(std::vector<int> &main, std::vector<int> &tmp, size_t level);
+	void how_long_johnson();
+	void print_results(int vector_comparisons, int deque_comparisons);
 
 	PmergeMe();
 	PmergeMe(const PmergeMe &other);
@@ -43,16 +36,30 @@ public:
 	};
 
 private:
-
-	void insert(std::vector<int> &main, std::vector<int> &tmp, size_t lvl);
+	
+	void ford_johnson_vector(std::vector<int> &main, std::vector<int> &tmp, size_t level);
+	void ford_johnson_deque(std::deque<int> &main, std::deque<int> &tmp, size_t level);
 	bool less_cmp(const int &a, const int &b);
-	void binary_insertion(std::vector<int>& vec, size_t begin, size_t end, int value);
-	std::vector<int> insertion_order(int n);
 	int	_comp_count;
-	std::vector<int> _initial_vec;
-	std::vector<int> _tmp;
-	std::vector<int> _main;
-	std::vector<int> _jacobstahl;
+
+	std::vector<int> 	_initial_vec;
+
+//Template functions
+	template <typename container>
+	void				insert(container &main, container &tmp, size_t lvl);
+	template <typename container>
+	void 				binary_insertion(container& vec, size_t begin, size_t end, int value);
+	template <typename container>
+	container			insertion_order(int n);
+//deque
+
+	std::deque<int>		_jacobstahl_deque;
+	long long			_elapsed_deque;
+	std::deque<int>		_main_deque;
+//vector
+	std::vector<int>	_jacobstahl_vector;
+	std::vector<int>	_main_vector;
+	long long 			_elapsed_vector;
 };
 
-#endif // PMERGEME_HPP
+#endif

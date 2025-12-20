@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	try
 	{
 		main.str_to_vec(argv[1]);
-		main.print_results();
+		main.how_long_johnson();
 	}
 	catch(const std::exception& e)
 	{
